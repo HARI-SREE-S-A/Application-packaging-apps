@@ -1,5 +1,6 @@
 import pandas as pd
-
+file_path = input("enter the file path....")
+subsets = input("enter subset paramtr....")
 
 df = pd.read_excel(file_path)
 df.drop_duplicates(subset = subsets,keep = 'first',inplace = True)
