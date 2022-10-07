@@ -1,0 +1,17 @@
+import pandas as pd
+import openpyxl
+
+
+df_1 = pd.read_excel("file1.xlsx")
+df_2 = pd.read_excel("file2.xlsx")
+
+df_1.rename(columns=lambda x : x + 'file1',inplace=True)
+df_2.rename(columns=lambda  x : x +'file2',inplace=True)
+
+df_join = df_1.merge(right = df_2,left_on=df_1.columns.to_list(),right_on=df_2.columns.to_list(),how="outer")
+
+
+df_1n2 = df_join.loc[df_join[df_2.columns.to_list()].isnull().all(axis=1),df_1.columns.to_list()]
+df_2n1 = df_join.loc[df_join[df_1.columns.to_list()].isnull().all(axis = 1),df_2.columns.to_list()]
+df_2n1.to_excel("not_in_1.xlsx")
+df_1n2.to_excel("not_in_2.xlsx")
