@@ -1,0 +1,7 @@
+import pandas as pd
+
+
+df = pd.read_excel(file_path)
+df.drop_duplicates(subset = subsets,keep = 'first',inplace = True)
+data = df
+data.to_excel("no_dupe.xlsx")
