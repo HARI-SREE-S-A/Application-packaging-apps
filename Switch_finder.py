@@ -9,7 +9,7 @@ def find_silent_install_switch(application_name):
     output = result.stdout + result.stderr
     for line in output.split("\n"):
         line = line.strip()
-        if "/S" in line or "/s" in line or "/q" in line:
+        if "/S" in line or "/s" in line or "/q" in line or "/quiet" in line:
             return line
     return None
 
